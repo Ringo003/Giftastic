@@ -1,7 +1,7 @@
 // ----- Game Variables ----- //
 
 // Initial array of car
-var animalsArr = ["Plymouth GTX ", "Dodge Challenger", "Ford Mustang", "Ford Cobra Mustang",
+var carArr = ["Plymouth GTX ", "Dodge Challenger", "Ford Mustang", "Ford Cobra Mustang",
                   "Plymouth Cuda'", "Chevy Corvette", "Plymouth Roadrunner"];
 
 // ----- Helper Functions ----- //
@@ -13,11 +13,11 @@ function renderButtons() {
   $("#buttonPanel").empty();
 
   // Loop through the array of car
-  for (var i = 0; i < animalsArr.length; i++) {
+  for (var i = 0; i < carArr.length; i++) {
     // Dynamicaly generate a button for each car in the array
     var button = $("<button>");
     button.addClass("carButton");
-    button.attr("data-car", animalsArr[i]);
+    button.attr("data-car", carArr[i]);
     button.text(carArr[i]);
 
     // Add the button to the HTML
@@ -44,9 +44,9 @@ $("#add-car").on("click", function(event) {
 
 // fetchcarGifs will fetch car Gifs with the Giphy API
 function fetchcarGifs() {
-  // Get the animal name from the button clicked
-  var carName = $(this).attr("data-animal");
-  var carStr = carName.split(" ").join("+");
+  // Get the car name from the button clicked
+  var carName = $(this).attr("data-car");
+  var carStr = carName.split("").join("+");
 
   // Construct the Giphy URL
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + carStr + 
@@ -98,13 +98,13 @@ function animateCarGif() {
   }
 }
 
-// Render the initial animal buttons when the HTML has finished loading
+// Render the initial car buttons when the HTML has finished loading
 $(document).ready(function() {
   renderButtons();
 });
 
-// An event handler for the animal buttons to fetch appropriate Gifs
+// An event handler for the car buttons to fetch appropriate Gifs
 $(document).on("click", ".carButton", fetchCarGifs);
 
-// Add an event handler for the animal Gifs to make the image animate and stop
+// Add an event handler for the car Gifs to make the image animate and stop
 $(document).on("click", ".carGif", animateCarGif);
