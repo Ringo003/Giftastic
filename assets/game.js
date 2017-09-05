@@ -7,7 +7,7 @@ var carArr = ["Plymouth GTX ", "Dodge Challenger", "Ford Mustang", "Ford Cobra M
 // ----- Helper Functions ----- //
 
 // renderButtons will display the car buttons for all car within the
-// animalsArr array.
+// carArr array.
 function renderButtons() {
   // Empty the buttons panel before redrawing it
   $("#buttonPanel").empty();
@@ -46,7 +46,7 @@ $("#add-car").on("click", function(event) {
 function fetchcarGifs() {
   // Get the car name from the button clicked
   var carName = $(this).attr("data-car");
-  var carStr = carName.split("").join("+");
+  var carStr = carName.split(" ").join("+");
 
   // Construct the Giphy URL
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + carStr + 
@@ -104,7 +104,7 @@ $(document).ready(function() {
 });
 
 // An event handler for the car buttons to fetch appropriate Gifs
-$(document).on("click", ".carButton", fetchCarGifs);
+$(document).on("click", ".carButton", fetchcarGifs);
 
 // Add an event handler for the car Gifs to make the image animate and stop
 $(document).on("click", ".carGif", animateCarGif);
